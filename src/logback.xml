@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+  
+<configuration>  
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder>  
+            <pattern>%msg	---- %d{HH:mm:ss.SSS}%n</pattern>  
+        </encoder>  
+    </appender>  
+  
+    <logger name="cn" additivity="false" level="ERROR">  
+        <appender-ref ref="STDOUT" />  
+    </logger>  
+    
+</configuration>  	

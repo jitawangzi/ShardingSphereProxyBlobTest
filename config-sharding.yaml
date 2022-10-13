@@ -1,0 +1,12 @@
+schemaName: test_sharding
+
+dataSources:
+  ds_0:
+    url: jdbc:mysql://127.0.0.1:51234/test?serverTimezone=UTC&useSSL=false
+    username: sharding
+    password: sharding
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+    minPoolSize: 1
