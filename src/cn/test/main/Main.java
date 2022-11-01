@@ -11,6 +11,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		SpringContextLoader.start("applicationContext.xml");
+		DataRecordMapper mapper = SpringContextLoader.getContext().getBean(DataRecordMapper.class);
 
 		DataRecord record = new DataRecord();
 		byte[] oriArray = new byte[] { 1, 0, 99, 111, 109, 46, 108, 115, 46, 114, 112, 99, 46, 115, 101, 114, 118, 101, 114, 46, 82,
@@ -20,17 +21,17 @@ public class Main {
 				111, 109, 46, 108, 115, 46, 114, 112, 99, 46, 115, 101, 114, 118, 101, 114, 46, 82, 112, 99, 82, 101, 115, 112, 111,
 				110, 115, -27, 0, 0, 0, 3, 115, 107, 104, 100, 98, 115, 107, 100, 117, 104, 97, 108, 100, 115, 106, 102, 100, 107, 106,
 				97, 102, 110, 97, 100, 102, -22, 10, 66, 61, -8, -5, 108, 25, 0, 0, 3, 2, 0, 3, 0, 0 };
-		record.setBytedata(oriArray);
-		record.setUuid(UUID.randomUUID().toString());
-		record.setType(3);
+		record.setBlobData(oriArray);
+		record.setIntData(3);
 
-		DataRecordMapper mapper = SpringContextLoader.getContext().getBean(DataRecordMapper.class);
+		record.setUuid(UUID.randomUUID().toString());
 		mapper.insert(record);
+
 		DataRecord recordSelect = mapper.selectByPrimaryKey(record.getUuid());
 		System.out.println();
-		System.out.println("binary data equals result : " + Arrays.equals(record.getBytedata(), recordSelect.getBytedata()));
+		System.out.println("binary data equals result : " + Arrays.equals(record.getBlobData(), recordSelect.getBlobData()));
 		System.out.println();
-		System.out.println("int data equals result : " + record.getType().equals(recordSelect.getType()));
+		System.out.println("int data equals result : " + record.getIntData().equals(recordSelect.getIntData()));
 
 	}
 }
