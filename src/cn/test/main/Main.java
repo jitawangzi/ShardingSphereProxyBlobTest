@@ -22,9 +22,10 @@ public class Main {
 				110, 115, -27, 0, 0, 0, 3, 115, 107, 104, 100, 98, 115, 107, 100, 117, 104, 97, 108, 100, 115, 106, 102, 100, 107, 106,
 				97, 102, 110, 97, 100, 102, -22, 10, 66, 61, -8, -5, 108, 25, 0, 0, 3, 2, 0, 3, 0, 0 };
 		record.setBlobData(oriArray);
-		record.setIntData(1);
+		record.setIntData(-1);
 		// If  set this, will cause an exception : Data truncation: Out of range value
-//		record.setShortData((short) -3);
+		record.setShortData((short) 5);
+		record.setByteData((byte) 15);
 
 		record.setUuid(UUID.randomUUID().toString());
 		mapper.insert(record);
@@ -34,6 +35,8 @@ public class Main {
 		System.out.println("binary data equals result : " + Arrays.equals(record.getBlobData(), recordSelect.getBlobData()));
 		System.out.println();
 		System.out.println("int data equals result : " + record.getIntData().equals(recordSelect.getIntData()));
+
+		Thread.currentThread().join();
 
 	}
 }
